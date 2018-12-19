@@ -9,6 +9,9 @@ const p = require('path')
 const app = express()
 
 app.options('/upload', cors())
+app.get('/', function (req, res, next) {
+    res.send('图片上传接口')
+})
 app.post('/upload', cors(), upload.single('file'), function (req, res, next) {
     console.log(req.file);
 
