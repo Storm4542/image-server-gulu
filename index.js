@@ -14,12 +14,11 @@ app.get('/', function (req, res, next) {
 })
 app.post('/upload', cors(), upload.single('file'), function (req, res, next) {
     console.log(req.file);
-
     res.json({
         key: req.file.filename
     })
 })
-app.get('/preview/:key', cors(), function (req, res, next) {
+app.get('/upload/:key', cors(), function (req, res, next) {
     res.sendFile(`uploads/${req.params.key}`, {
         root: __dirname,
         headers: {
