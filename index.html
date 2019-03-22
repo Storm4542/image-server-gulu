@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #app p {
+            font-size: 18px;
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+
+    </div>
+</body>
+
+</html>
+<script>
+    function random(num) {
+        for (let i = 0; i < num; i++) {
+            let number = Math.random() * 100
+            let app = document.getElementById('app')
+            app.appendChild(`<p>${number}</p>`)
+        }
+    }
+</script>
