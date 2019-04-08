@@ -25,6 +25,9 @@ app.post('/upload', cors(), type, function (req, res, next) {
         key: req.file.filename
     })
 })
+app.get('/', cors(), function (req, res, next) {
+    res.send('Hello')
+})
 app.get('/upload/:key', cors(), function (req, res, next) {
     res.sendFile(`uploads/${req.params.key}`, {
         root: __dirname,
