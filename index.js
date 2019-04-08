@@ -2,11 +2,12 @@ const express = require('express')
 const multer = require('multer')
 var bodyParser = require('body-parser');
 const cors = require('cors')
-const upload = multer({
-    dest: 'uploads/'
-})
-const p = require('path');
 
+const p = require('path');
+const upload = multer({
+    dest: __dirname + '/uploads/'
+});
+const type = upload.single('file');
 const app = express()
 app.use(bodyParser.json({
     limit: '50mb',
@@ -18,12 +19,11 @@ app.use(bodyParser.urlencoded({
 })); // for parsing application/x-www-form-urlencoded
 app.options('/upload', cors())
 
-app.post('/upload', cors(), function (req, res, next) {
+app.post('/upload', cors(), type, function (req, res, next) {
     console.log(req.body);
-    // res.json({
-    //     key: req.file.filename
-    // })
-    res.send(req.body)
+    res.json({
+        key: req.file.filename
+    })
 })
 app.get('/upload/:key', cors(), function (req, res, next) {
     res.sendFile(`uploads/${req.params.key}`, {
