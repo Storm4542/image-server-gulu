@@ -17,6 +17,9 @@ app.use(bodyParser.urlencoded({
     limit: '50mb',
     extended: true
 })); // for parsing application/x-www-form-urlencoded
+app.get('/', cors(), function (req, res, next) {
+    res.send('Hello')
+})
 app.options('/upload', cors())
 
 app.post('/upload', cors(), type, function (req, res, next) {
@@ -25,9 +28,7 @@ app.post('/upload', cors(), type, function (req, res, next) {
         key: req.file.filename
     })
 })
-app.get('/', cors(), function (req, res, next) {
-    res.send('Hello')
-})
+
 app.get('/upload/:key', cors(), function (req, res, next) {
     res.sendFile(`uploads/${req.params.key}`, {
         root: __dirname,
